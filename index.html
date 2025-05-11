@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>错题本</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 顶部标题栏 + 设置按钮 -->
+  <header class="header">
+    <h1>错题本</h1>
+    <div class="header-buttons">
+        <button id="settings-btn" title="设置">📖 ⚙️</button>
+    </div>
+  </header>
+
+  <!--查看教程提示-->
+  <div id="tutorial-modal" class="modal" style="display: none;">
+  <div class="modal-content" style="max-width: 400px; padding: 20px; text-align: center;">
+    <h3>📚 欢迎使用错题本！</h3>
+    <p>需要查看使用教程吗？</p>
+    <div style="margin-top: 20px;">
+      <button id="go-tutorial" style="margin-right: 15px;">前往教程</button>
+      <button id="close-tutorial">暂时不用</button>
+    </div>
+  </div>
+</div>
+
+  <div class="container">
+    <!-- 上传错题 -->
+    <section id="upload-section" class="section active">
+      <h2>上传错题</h2>
+      <textarea id="question-input" placeholder="输入题目内容..." rows="4"></textarea>
+      <textarea id="answer-input" placeholder="输入题目答案..." rows="2"></textarea>
+      <select id="category-select">
+        <option value="">选择分类</option>
+        <option>全部</option>
+        <option>语文</option><option>数学</option><option>英语</option><option>物理</option>
+        <option>化学</option><option>生物</option><option>政治</option><option>历史</option>
+        <option>地理</option><option>其他</option>
+      </select>
+      <div id="image-upload-wrapper" class="form-group">
+        <button class="upload-botton" id="trigger-image-input">📷 选择图片（仅支持本地部署）</button>
+        <input type="file" id="image-input" accept="image/*" capture="environment" style="display: none;">
+      </div>
+
+      <div class="form-group">
+        <button id="upload-btn">上传</button>
+      </div>
+    </section>
+
+    <!-- 分类浏览 -->
+    <section id="category-section" class="section">
+      <h2>分类浏览</h2>
+      <div id="category-list" class="btn-group"></div>
+      <div id="practice-wrapper" class="hidden">
+        <button id="practice-btn">开始做题</button>
+      </div>
+      <ul id="category-items"></ul>
+    </section>
+
+    <!-- 做题练习 -->
+    <section id="practice-section" class="section">
+      <h2>做题练习</h2>
+      <div id="practice-question"></div>
+      <img id="practice-image" class="preview" style="max-width: 100%; margin: 10px 0;">
+      <input type="text" id="practice-answer-input" placeholder="输入你的答案">
+      <div style="margin-top: 12px;">
+        <button id="practice-submit-btn">提交</button>
+        <button id="practice-skip-btn" style="margin-left: 8px;">跳过</button>
+      </div>
+    </section>
+
+    <!-- 搜索题目 -->
+    <section id="search-section" class="section">
+      <h2>搜索题目</h2>
+      <input type="text" id="search-input" placeholder="输入关键词搜索">
+      <ul id="search-results"></ul>
+    </section>
+
+    <!-- 统计图表 -->
+    <section id="charts-section" class="section">
+      <h2>统计图表</h2>
+      <canvas id="pie-chart" width="300" height="300"></canvas>
+      <canvas id="line-chart" width="300" height="300"></canvas>
+    </section>
+
+    <!-- 历史记录 -->
+    <section id="history-section" class="section">
+      <h2>历史记录</h2>
+      <ul id="history-list"></ul>
+    </section>
+
+    <!-- 设置 -->
+    <section id="settings-section" class="section hidden">
+      <h2>设置</h2>
+      <div class="form-group">
+        <span>开启 MochiBeta （debug功能）</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="beta-toggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="form-group">
+        <label>深色模式</label>
+        <label class="toggle-switch">
+          <input type="checkbox" id="dark-mode-toggle" />
+          <span class="slider"></span>
+        </label>
+      </div>      
+      <div class="form-group">
+        <label for="threshold-input">做题正确次数阈值：</label>
+        <input type="number" id="threshold-input" min="1" value="3">
+      </div>
+      <!-- 使用说明跳转 -->
+       <div class="form-group">
+        <button onclick="window.open('usage.html', '_blank')">📖 使用说明</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Toast 提示 -->
+  <div class="toast" id="toast">操作成功！</div>
+
+  <!-- 底部导航 -->
+  <nav class="footer-nav">
+    <button onclick="showSection('upload-section')">上传</button>
+    <button onclick="showSection('category-section')">分类</button>
+    <button onclick="showSection('search-section')">搜索</button>
+    <button onclick="showSection('charts-section')">图表</button>
+    <button onclick="showSection('history-section')">历史</button>
+  </nav>
+
+  <!-- js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/chart.js"></script>
+  <script src="js/main.js"></script>
+  
+  <!--刷新按钮-->
+  <button id="refresh-btn" class="refresh-btn">刷新</button>
+
+  <!--上传图片显示-->
+  <div id="image-modal" class="modal">
+  <span class="close">&times;</span>
+  <div class="modal-container">
+    <img class="modal-content" id="modal-image">
+  </div>
+</div>
+
+
+</body>
+</html>

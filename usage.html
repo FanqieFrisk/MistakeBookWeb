@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>错题本使用说明</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #f8f9fa;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #4a90e2;
+      margin: 40px 0;
+      font-size: 2.2em;
+    }
+
+    h2 {
+      color: #4a90e2;
+      margin: 30px 0 15px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid #eee;
+    }
+
+    .home-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 12px 20px;
+      background: #4a90e2;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+    .home-button:hover {
+      background: #357abd;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    }
+    .home-button::before {
+      content: "←";
+      margin-right: 8px;
+      font-size: 1.2em;
+    }
+
+    .step {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border: 1px solid #eee;
+    }
+
+    ol {
+      margin-left: 25px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .tip {
+      background: #e3f2fd;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 15px 0;
+    }
+
+    /* 深色模式适配 */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #121212;
+        color: #eee;
+      }
+      .step {
+        background: #1e1e1e;
+        border-color: #333;
+      }
+      img {
+        border-color: #333;
+      }
+      .tip {
+        background: #2d3748;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .step-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+    <a href="index.html" class="home-button">返回首页</a>
+  <h1>错题本使用指南 📚</h1>
+
+  <div class="step">
+    <h2>目录导航</h2>
+    <ol>
+      <li><a href="#upload">上传错题</a></li>
+      <li><a href="#category">分类管理</a></li>
+      <li><a href="#practice">做题练习</a></li>
+      <li><a href="#chart">数据统计</a></li>
+    </ol>
+  </div>
+
+  <!-- 上传错题 -->
+  <div class="step" id="upload">
+    <h2>📤 1. 上传错题</h2>
+    <div class="step-grid">
+      <div>
+        <ol>
+          <li>点击底部导航栏的「上传」按钮</li>
+          <li>填写题目内容和正确答案</li>
+          <li>选择对应的学科分类</li>
+          <li>（可选）上传题目图片</li>
+          <li>点击上传按钮完成操作</li>
+        </ol>
+        <div class="tip">
+          💡 小贴士：本地部署端点击图片上传区域可以选择图片上传
+          😭 目前代理网页端由于服务器本身缘故暂不支持图片上传
+        </div>
+      </div>
+      <img src="assets/00.jpg" alt="上传界面示意图">
+    </div>
+  </div>
+
+
+  <!-- 分类管理 -->
+  <div class="step" id="category">
+    <h2>🗂 2. 分类管理</h2>
+    <div class="step-grid">
+      <img src="assets/01.jpg" alt="分类界面示意图">
+      <div>
+        <ol>
+          <li>点击底部导航栏的「分类」按钮</li>
+          <li>选择需要查看的学科分类</li>
+          <li>点击题目卡片查看详细内容</li>
+          <li>使用右侧按钮移除不需要的题目</li>
+          <li>点击「开始练习」进入做题模式</li>
+        </ol>
+        <div class="tip">
+          💡 点击底部导航栏「搜索」按钮可以搜索对应题目
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 做题练习 -->
+  <div class="step" id="practice">
+    <h2>📝 3. 做题练习</h2>
+    <div class="step-grid">
+      <div>
+        <ol>
+          <li>在分类页面点击「开始做题」</li>
+          <li>阅读题目内容（支持图片展示）</li>
+          <li>在输入框填写你的答案</li>
+          <li>点击提交查看结果</li>
+          <li>使用「跳过」按钮暂时跳过难题</li>
+        </ol>
+        <div class="tip">
+          💡 连续答对3次（可设置）的题目会自动归档删除
+        </div>
+      </div>
+      <img src="assets/02.jpg" alt="练习界面示意图">
+    </div>
+  </div>
+
+  <!-- 数据统计 -->
+  <div class="step" id="chart">
+    <h2>📊 4. 数据统计</h2>
+    <div class="step-grid">
+      <img src="assets/04.jpg" alt="统计图表示意图">
+      <div>
+        <ol>
+          <li>点击底部导航栏的「图表」按钮</li>
+          <li>查看上传学科分布的饼状图</li>
+          <li>分析上传题量趋势的折线图</li>
+          <li>直观了解自身学习情况</li>
+          <li>上下滑动阅览不同图表</li>
+        </ol>
+        <div class="tip">
+          💡 每日学习数据会自动同步到本地
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="index.html" class="home-button">返回首页</a>
+
+  <div style="text-align: center; margin: 40px 0; color: #666;">
+    <p>🎉 现在就开始整理你的错题吧！</p>
+  </div>
+</body>
+</html>

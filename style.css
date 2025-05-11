@@ -1,0 +1,381 @@
+/* --- 基础 & 重置 --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Helvetica Neue', sans-serif; background: #f9fafb; color: #333; }
+.container { padding: 80px 16px 60px; max-width: 800px; margin: 0 auto; }
+
+/* --- 头部 --- */
+.header {
+  position: fixed; top: 0; left: 0; width: 100%; height: 50px;
+  background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 16px; z-index: 100;
+}
+.header h1 { font-size: 1.4rem; color: #4a90e2; }
+.header button { background: none; border: none; font-size: 1.4rem; cursor: pointer; }
+
+/* --- 区块 & 隐藏 --- */
+section { display: none; }
+.section.active { display: block; }
+.hidden { display: none; }
+
+/* --- 标题 --- */
+h2 { font-size: 1.3rem; margin-bottom: 12px; color: #4a90e2; }
+
+/* --- 表单组 --- */
+.form-group {
+  margin-top: 8px;
+  margin-bottom: 8px; /* 空出与分类的间距 */
+}
+textarea, input[type="text"], input[type="number"], select {
+  width: 100%; padding: 10px; border: 1px solid #ddd;
+  border-radius: 4px; font-size: 1rem; background: #fff;
+}
+textarea { resize: vertical; }
+
+/* --- 按钮 --- */
+button {
+  display: inline-block; background: #4a90e2; color: #fff;
+  border: none; padding: 10px 16px; font-size: 1rem;
+  border-radius: 4px; cursor: pointer; transition: background 0.2s;
+}
+button:hover { background: #357abd; }
+
+/* --- 文件上传 --- */
+#image-upload-wrapper {
+  display: flex; align-items: center; justify-content: space-between;
+}
+#image-input {
+  flex: 1; margin-right: 12px;
+}
+
+/* --- 分类按钮组 --- */
+.btn-group { margin-bottom: 16px; }
+.btn-group button {
+  margin-right: 8px; margin-bottom: 8px;
+  background: #fff; color: #555; border: 1px solid #ccc;
+  border-radius: 4px; padding: 6px 12px;
+}
+.btn-group button.active { background: #4a90e2; color: #fff; border-color: #4a90e2; }
+
+/* --- 列表 & 预览图 --- */
+ul { list-style: none; }
+li {
+  padding: 12px; border: 1px solid #eaeaea; border-radius: 4px;
+  margin-bottom: 8px; display: flex; align-items: center;
+}
+li .preview {
+  max-width: 60px; max-height: 60px; margin-right: 12px; border-radius: 4px;
+}
+li div { flex: 1; }
+
+/* --- 切换开关 --- */
+.toggle-switch {
+  position: relative; display: inline-block; width: 40px; height: 20px;
+  vertical-align: middle;
+}
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc; border-radius: 20px; transition: .4s;
+}
+.slider:before {
+  position: absolute; content: ""; height: 16px; width: 16px;
+  left: 2px; bottom: 2px; background-color: white;
+  border-radius: 50%; transition: .4s;
+}
+.toggle-switch input:checked + .slider { background-color: #4a90e2; }
+.toggle-switch input:checked + .slider:before { transform: translateX(20px); }
+
+/* --- Toast --- */
+.toast {
+  position: fixed; bottom: 70px; left: 50%; transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7); color: #fff;
+  padding: 10px 20px; border-radius: 20px; opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* --- 底部导航 --- */
+.footer-nav {
+  position: fixed; bottom: 0; left: 0; width: 100%; height: 50px;
+  background: #fff; border-top: 1px solid #ddd;
+  display: flex; justify-content: space-around; align-items: center;
+}
+.footer-nav button { background: none; color: #555; font-size: 0.9rem; }
+.footer-nav button:hover { color: #000; }
+
+/* 刷新按钮 */
+.refresh-btn {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    padding: 8px 12px;
+    background: #4a90e2;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+.refresh-btn:hover {
+    background: #357abd;
+}
+
+/* --- 🌙 深色模式 --- */
+body.dark-mode {
+  background: #121212;
+  color: #eeeeee;
+}
+.dark-mode .header {
+  background: #1e1e1e;
+  box-shadow: 0 1px 4px rgba(255,255,255,0.1);
+}
+.dark-mode .footer-nav {
+  background: #1e1e1e;
+  border-top: 1px solid #333;
+}
+.dark-mode .btn-group button {
+  background: #333;
+  color: #eee;
+  border-color: #555;
+}
+.dark-mode .btn-group button.active {
+  background: #4a90e2;
+  color: #fff;
+  border-color: #4a90e2;
+}
+.dark-mode textarea,
+.dark-mode input[type="text"],
+.dark-mode input[type="number"],
+.dark-mode select {
+  background: #2c2c2c;
+  color: #fff;
+  border-color: #444;
+}
+.dark-mode button {
+  background: #333333;
+  color: #fff;
+}
+.dark-mode .refresh-btn {
+  background: #555555;
+}
+
+/* 调整跳过按钮样式 */
+#practice-skip-btn {
+  background: #888;
+}
+#practice-skip-btn:hover {
+  background: #666;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.9);
+  cursor: pointer;
+}
+
+.modal-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  z-index: 99999;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close:hover {
+  color: #bbb;
+  transform: scale(1.1);
+}
+
+/* 新增 ESC 键提示 */
+.modal::after {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.8);
+  font-size: 14px;
+}
+
+#tutorial-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#tutorial-modal .modal-content {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  animation: modalSlide 0.3s ease-out;
+}
+
+@keyframes modalSlide {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.dark-mode #tutorial-modal .modal-content {
+  background: #2d3748;
+  color: white;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.header-buttons button {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    padding: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.header-buttons button:hover {
+    transform: scale(1.1);
+}
+
+/* 深色模式适配 */
+.dark-mode .header-buttons button {
+    color: #e2e8f0;
+}
+
+/* 分类列表图片样式 */
+#category-items .preview {
+  max-width: 100px;
+  max-height: 100px;
+  margin-right: 12px;
+  cursor: zoom-in;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+/* 练习图片样式 */
+#practice-image {
+  max-width: 100%;
+  max-height: 300px;
+  margin: 15px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: zoom-in;
+}
+
+/* 模态框图片优化 */
+.modal-content {
+  max-width: 90%;
+  max-height: 90vh;
+  padding: 20px;
+  background: white;
+  border-radius: 4px;
+}
+
+.custom-upload-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.custom-upload-btn:hover {
+  background: linear-gradient(135deg, #5a67d8, #6b46c1);
+}
+
+/* 分类选择 */
+#category-select {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 上传按钮和图片按钮通用样式 */
+.upload-button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #42a5f5, #478ed1);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(66, 165, 245, 0.4);
+  text-align: center;
+  user-select: none;
+  margin-top: 18px;
+}
+
+.upload-button:hover {
+  background: linear-gradient(135deg, #64b5f6, #5c9bd6);
+  box-shadow: 0 6px 18px rgba(66, 165, 245, 0.5);
+}
+
+.upload-bot {
+  display: inline-block;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.upload-bot:hover {
+  background: linear-gradient(to right, #5f0fff, #1e90ff);
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.upload-bot:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
